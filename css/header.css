@@ -15,7 +15,7 @@ header {
 
 .top-container {
     display: grid;
-    grid-template-columns: 17% 12% 36% 5% 20%;
+    grid-template-columns: 1fr 2fr 1fr;
     justify-content: space-between;
     margin-bottom: 20px;
 }

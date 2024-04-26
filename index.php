@@ -33,7 +33,7 @@ if(isset($_POST['add_to_cart'])){
     if(mysqli_num_rows($result) > 0){
         echo '<script>alert("Book already added to cart!")</script>';
     } else {
-        $sql = "INSERT INTO cart (user_id, title, price, quantity, image) VALUES ('$user_id', '$book_title', '$book_price', '$book_quantity', '$book_image')";
+        $sql = "INSERT INTO cart (user_id, name, price, quantity, image) VALUES ('$user_id', '$book_title', '$book_price', '$book_quantity', '$book_image')";
         $result = mysqli_query($con, $sql);
 
         if($result){
@@ -81,11 +81,11 @@ if(isset($_POST['add_to_cart'])){
         </div>
         <!--featured categories-->
         <div class="main-container" style="display:block;align-items: flex-start;">
-        <h1 style="text-align:center;">Featured Books</h1>
+        <h1 style="text-align:center;">Featured Products</h1>
         <div class="book-container" style="margin:30px 0;">
             <?php
-                $select_books = mysqli_query($con, "SELECT * FROM books") or die('query failed');
-                $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN books ON categories.id = books.category_id") or die('query failed');
+                $select_books = mysqli_query($con, "SELECT * FROM products") or die('query failed');
+                $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN products ON categories.id = products.category_id") or die('query failed');
 
                 if(mysqli_num_rows($select_books) > 0){
                     while(($fetch_books = mysqli_fetch_assoc($select_books)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
@@ -129,44 +129,12 @@ if(isset($_POST['add_to_cart'])){
                 ?>
 
         </div>
-        <h1 style="text-align:center;">Customer Reviews</h1>
-    <br>
     
-    <div  id="slideshow">
-        <div class="slider">
-           
-          
-            <div class="slide">
-                <h2 class="feedbacktopic">"Amazing service."</h2>
-                <img class=feedbackss src="src/image1.png";>
-                <p class="description">One of the best market palce for books. I really wonder about their services and book collection </p>
-            </div>
-
-            <div class="slide">
-                <h2 class="feedbacktopic">"Best market palce. Highly Recommended"</h2>
-                <img class=feedbackss src="src/image2.png";>
-                <p class="description">This website helps me to find the best acedemic books that are related for my studies. Don't be hesitate to purchase your books from this site. </p>
-            </div>
-            
-            <div class="slide">
-                <h2 class="feedbacktopic">"Best collection"</h2>
-                <img class=feedbackss src="./src/image3.png";>
-                <p class="description">This has vast collection of books and that is very helpful form my studies. I really like this website </p>
-
-            </div>
-
-            <div class="slide">
-                <h2 class="feedbacktopic">"Execellent customer service"</h2>
-                <img class=feedbackss src="src/image4.png";>
-                <p class="description">Friendly and fast communication. They help me solve my problem within few minutes. Really glad about that. </p>
-            </div>
-
-        </div>
-    </div>
+    
 </body>
 
 <?php
-    include './templates/newsletter.php';
+   
     include './templates/footer.php';
 ?>
 
