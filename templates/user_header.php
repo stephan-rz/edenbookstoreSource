@@ -35,16 +35,7 @@ include './php/config.php';
                         <img src="./src/logo.png" alt="logo" id="logo">
                     </a>
                 </div>
-                <div class="cat-button">
-                    <button class="category"> Category</button>
-                    <div class="c-list">
-                        <button class="links" style="border-radius: 10px 10px 0 0;">Adventure</button>
-                        <button class="links">Comic Book</button>
-                        <button class="links">Fantasy</button>
-                        <button class="links">Horror</button>
-                        <button class="links" style="border-radius: 0 0 10px 10px;">Historical Fiction</button>
-                    </div>
-                </div>
+                
                 <div class="bottom-container">
                 <nav>
                     <div class="nav-links">
@@ -58,15 +49,7 @@ include './php/config.php';
                     </div>
                 </nav>
             </div>
-                <div class="search-bar">
-                    <div class="search">
-                        
-                            <a href="search.php"><button type="submit" class="search-btn" name="search-btn">
-                            <i class="fa fa-search"></i>
-                        </button></a>
-                        
-                    </div>
-                </div>
+                
                 <div class="cart-icon">
                         <?php
                         $select_cart_number = mysqli_query($con, "SELECT * FROM `cart` WHERE user_id = '$user_id'") or die('query failed');

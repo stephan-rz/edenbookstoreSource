@@ -36,7 +36,7 @@ mysqli_close($con);
 
 ?>
 
-    <div class="main-container">
+    <div class="main-container" style="padding-bottom:80px;">
         <div class="container">
             <div class="form-container">
                 <h2>Create an Account</h2>
@@ -130,6 +130,5 @@ mysqli_close($con);
 
 
 <?php
-include './templates/newsletter.php';
 include './templates/footer.php';
 ?>

@@ -17,30 +17,30 @@ if(isset($_SESSION['admin_id'])){
 if(isset($_POST['add_to_cart'])){
 
     if (!isset($user_id)){
-        echo '<script>alert("Please login to add books to cart!");
+        echo '<script>alert("Please login to add products to cart!");
         window.location.href="login.php";</script>';
     }else {
 
-    $book_id = $_POST['book_id'];
-    $book_title = $_POST['book_title'];
-    $book_price = $_POST['book_price'];
-    $book_image = $_POST['book_image'];
-    $book_quantity = $_POST['book_quantity'];
+    $product_id = $_POST['product_id'];
+    $product_title = $_POST['product_title'];
+    $product_price = $_POST['product_price'];
+    $product_image = $_POST['product_image'];
+    $product_quantity = $_POST['product_quantity'];
 
-    $sql = "SELECT * FROM cart WHERE title = '$book_id' AND user_id = '$user_id'";
+    $sql = "SELECT * FROM cart WHERE title = '$product_id' AND user_id = '$user_id'";
     $result = mysqli_query($con, $sql);
 
     if(mysqli_num_rows($result) > 0){
-        echo '<script>alert("Book already added to cart!")</script>';
+        echo '<script>alert("Product already added to cart!")</script>';
     } else {
-        $sql = "INSERT INTO cart (user_id, name, price, quantity, image) VALUES ('$user_id', '$book_title', '$book_price', '$book_quantity', '$book_image')";
+        $sql = "INSERT INTO cart (user_id, title, price, quantity, image) VALUES ('$user_id', '$product_title', '$product_price', '$product_quantity', '$product_image')";
         $result = mysqli_query($con, $sql);
 
         if($result){
-            echo '<script>alert("Book Added to Cart Successfully!"); 
-            window.location.href="shop.php";</script>';  
+            echo '<script>alert("Product Added to Cart Successfully!"); 
+            window.location.href="cart.php";</script>';  
         } else {
-            echo '<script>alert("Book not added to cart!")</script>';
+            echo '<script>alert("Product not added to cart!")</script>';
         }
     }
 }
@@ -61,7 +61,7 @@ if(isset($_POST['add_to_cart'])){
         </a></figure>
         </div>
 
-        <p class="maintitle">Welcome to Eden BookStore</p>
+        <p class="maintitle">Welcome to Eden ProductStore</p>
         <div class="row">
             <div class="col-1">
                     <img src="./src/qickdelivery.png">
@@ -80,35 +80,35 @@ if(isset($_POST['add_to_cart'])){
             </div>
         </div>
         <!--featured categories-->
-        <div class="main-container" style="display:block;align-items: flex-start;">
-        <h1 style="text-align:center;">Featured Products</h1>
-        <div class="book-container" style="margin:30px 0;">
-            <?php
-                $select_books = mysqli_query($con, "SELECT * FROM products") or die('query failed');
+        <div class="main-container" style="display:block;align-items: flex-start; padding-bottom:80px;">
+            <h1 style="text-align:center;">Featured Products</h1>
+            <div class="book-container" style="margin:30px 0;">
+                <?php
+                $select_products = mysqli_query($con, "SELECT * FROM products") or die('query failed');
                 $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN products ON categories.id = products.category_id") or die('query failed');
 
-                if(mysqli_num_rows($select_books) > 0){
-                    while(($fetch_books = mysqli_fetch_assoc($select_books)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
+                if(mysqli_num_rows($select_products) > 0){
+                    while(($fetch_products = mysqli_fetch_assoc($select_products)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
         
-            ?>
-            <div class="book-card">
+                ?>
+                <div class="book-card">
                     <form action="" method="post" class="cart-box">
-                        <img class="image" src="./src/uploads/<?php echo $fetch_books['image'] ?>" alt="">
+                        <img class="image" src="./src/uploads/<?php echo $fetch_products['image'] ?>" alt="">
                         <div class="info">
-                            <h3><?php echo $fetch_books['title'] ?></h3>
+                            <h3><?php echo $fetch_products['title'] ?></h3>
                             <p><?php echo $fetch_category['name'] ?></p>
                             <div class="price-qty">
-                                <span>$<?php echo $fetch_books['price'] ?></span>
-                                <input type="number" name="book_quantity" value="1" min="1" id="book_quantity" class="qty">
+                                <span>$<?php echo $fetch_products['price'] ?></span>
+                                <input type="number" name="product_quantity" value="1" min="1" id="product_quantity" class="qty">
                             </div>
-                            <input type="hidden" name="book_id" value="<?php echo 
-                            $fetch_books['id'] ?>">
-                            <input type="hidden" name="book_title" value="<?php echo 
-                            $fetch_books['title'] ?>">
-                            <input type="hidden" name="book_price" value="<?php echo 
-                            $fetch_books['price'] ?>">
-                            <input type="hidden" name="book_image" value="<?php echo 
-                            $fetch_books['image'] ?>">
+                            <input type="hidden" name="product_id" value="<?php echo 
+                            $fetch_products['id'] ?>">
+                            <input type="hidden" name="product_title" value="<?php echo 
+                            $fetch_products['title'] ?>">
+                            <input type="hidden" name="product_price" value="<?php echo 
+                            $fetch_products['price'] ?>">
+                            <input type="hidden" name="product_image" value="<?php echo 
+                            $fetch_products['image'] ?>">
 
                             <?php 
 
@@ -124,11 +124,12 @@ if(isset($_POST['add_to_cart'])){
                 <?php
                     }
                     } else {
-                        echo '<p class="empty">No books added yet!</p>';
+                        echo '<p class="empty">No products added yet!</p>';
                     }
                 ?>
 
         </div>
+    </div>
     
     
 </body>

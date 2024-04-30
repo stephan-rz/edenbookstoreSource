@@ -24,21 +24,21 @@ if(isset($_POST['order-btn'])){
     $date = date('Y-m-d');
     
     $cart_total = 0;
-    $cart_books[] = '';
+    $cart_products[] = '';
 
     $cart_query = mysqli_query($con, "SELECT * FROM cart WHERE user_id = '$user_id'") or die('query failed');
 
     if(mysqli_num_rows($cart_query) > 0){
         while($cart_row = mysqli_fetch_assoc($cart_query)){
             $cart_total += $cart_row['price'];
-            $cart_books[] = $cart_row['title'] . ' (' .$cart_row['quantity'].')';
+            $cart_products[] = $cart_row['title'] . ' (' .$cart_row['quantity'].')';
             $sub_total = ($cart_row['price'] * $cart_row['quantity']);
             $cart_total += $sub_total;
         }
     }
 
-    $total_books = implode(', ', $cart_books);
-    $order_query = mysqli_query($con, "SELECT * FROM orders WHERE name = '$name' AND phone = '$phone' AND email = '$email' AND payment_method = '$payment_method' AND address = '$address' AND total_books = '$total_books' AND total_price = '$cart_total'") or die('query failed');
+    $total_products = implode(', ', $cart_products);
+    $order_query = mysqli_query($con, "SELECT * FROM orders WHERE name = '$name' AND phone = '$phone' AND email = '$email' AND payment_method = '$payment_method' AND address = '$address' AND total_products = '$total_products' AND total_price = '$cart_total'") or die('query failed');
     
 if($cart_total == 0){
     echo '<script>alert("Your cart is empty!");
@@ -48,12 +48,12 @@ if($cart_total == 0){
     if(mysqli_num_rows($order_query) > 0){
         echo '<script>alert("Order already placed!")</script>';
     } else {
-        mysqli_query($con, "INSERT INTO orders (user_id, name, phone, email, payment_method, address , total_books, total_price, placed_date) 
-        VALUES ('$user_id', '$name', '$phone', '$email', '$payment_method', '$address' , '$total_books', '$cart_total', '$date')") or die('query failed');
+        mysqli_query($con, "INSERT INTO orders (user_id, name, phone, email, payment_method, address , total_products, total_price, placed_date) 
+        VALUES ('$user_id', '$name', '$phone', '$email', '$payment_method', '$address' , '$total_products', '$cart_total', '$date')") or die('query failed');
     }
     $delete_cart = mysqli_query($con, "DELETE FROM cart WHERE user_id = '$user_id'") or die('query failed');
     echo '<script>alert("Order placed successfully!");
-    window.location.href="shop.php";</script>';
+    window.location.href="orders.php";</script>';
     
 }
 
@@ -206,7 +206,6 @@ if($cart_total == 0){
     </div>
 
 <?php
-
 include './templates/footer.php';
 
 ?>

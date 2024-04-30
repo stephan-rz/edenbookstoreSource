@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Add Book Category';
+$title = 'Add Product Category';
 include './php/config.php';
 
 session_start();
@@ -17,10 +17,10 @@ if(isset($_GET['delete'])){
     $sql = "DELETE FROM categories WHERE id = '$id'";
     $result = mysqli_query($con, $sql);
     if($result){
-        echo '<script>alert("Book Category Deleted Successfully!"); 
+        echo '<script>alert("Product Category Deleted Successfully!"); 
         window.location.href="admin_category.php";</script>';  
     } else {
-        echo '<script>alert("Book Category not deleted!")</script>';
+        echo '<script>alert("Product Category not deleted!")</script>';
     }
 }
 
@@ -42,20 +42,20 @@ if(isset($_POST['addCategory'])){
     $category = mysqli_real_escape_string($con, $_POST['category']);
 
 
-    $select_book_category = mysqli_query($con, "SELECT * FROM categories WHERE name = '$category'") or die('query failed');
+    $select_product_category = mysqli_query($con, "SELECT * FROM categories WHERE name = '$category'") or die('query failed');
 
-    if(mysqli_num_rows($select_book_category) > 0){
-        echo '<script>alert("Book Category already added!")</script>';
+    if(mysqli_num_rows($select_product_category) > 0){
+        echo '<script>alert("Product Category already added!")</script>';
     }else {
         $sql = "INSERT INTO categories (name) VALUES ('$category')";
         $result = mysqli_query($con, $sql);
 
         if($result){
-            echo '<script>alert("Book Category Added Successfully!"); 
+            echo '<script>alert("Product Category Added Successfully!"); 
             window.location.href="admin_category.php";</script>';  
             
         } else {
-            echo '<script>alert("Book Category not added!")</script>';
+            echo '<script>alert("Product Category not added!")</script>';
         }
     }
 }
@@ -72,17 +72,17 @@ include './templates/admin_header.php';
 
     <div class="category-container">
         <div class="category-list">
-            <h2>Our Book Categories</h2><br>
+            <h2>Our Product Categories</h2><br>
             <ul>
                 <?php
-                    $select_book_category = mysqli_query($con, "SELECT * FROM categories") or die('query failed');
+                    $select_product_category = mysqli_query($con, "SELECT * FROM categories") or die('query failed');
 
-                    if(mysqli_num_rows($select_book_category) > 0){
-                        while($fetch_book_category = mysqli_fetch_assoc($select_book_category)){
+                    if(mysqli_num_rows($select_product_category) > 0){
+                        while($fetch_product_category = mysqli_fetch_assoc($select_product_category)){
                 ?>
-                    <li><i class="fas fa-book"></i><span><?php echo $fetch_book_category['name']; ?></span> - 
-                    <a href="admin_category.php?delete=<?php echo $fetch_book_category['id']; ?>" onclick="return confirm('Delete this book category?')">Delete</a>/ 
-                    <a href="admin_category.php?update=<?php echo $fetch_book_category['id']; ?>">Edit</a></li>
+                    <li><i class="fas fa-book"></i><span><?php echo $fetch_product_category['name']; ?></span> - 
+                    <a href="admin_category.php?delete=<?php echo $fetch_product_category['id']; ?>" onclick="return confirm('Delete this product category?')">Delete</a>/ 
+                    <a href="admin_category.php?update=<?php echo $fetch_product_category['id']; ?>">Edit</a></li>
 
                     
                     <?php
@@ -90,7 +90,7 @@ include './templates/admin_header.php';
 
                  
                 } else {
-                    echo '<p class="empty">No book categories found!</p>';
+                    echo '<p class="empty">No product categories found!</p>';
                 }
             ?>          
             </ul>  
@@ -132,7 +132,7 @@ include './templates/admin_header.php';
         </div>
         <div class="container">
             <div class="form-container">
-                <h2>Add Book Category</h2>
+                <h2>Add Product Category</h2>
                 <form action="" method="post">
 
                     <div class="input-field">
@@ -141,7 +141,7 @@ include './templates/admin_header.php';
                     </div>
 
 
-                    <input type="submit" name="addCategory" value="Add Book Category" class="submit-btn btn">
+                    <input type="submit" name="addCategory" value="Add Product Category" class="submit-btn btn">
                 </form>
             </div>
         </div>

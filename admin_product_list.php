@@ -1,6 +1,6 @@
 <?php
 
-$title = 'Book List';
+$title = 'Product List';
 include './php/config.php';
 session_start();
 
@@ -13,13 +13,13 @@ if(!isset($admin_id)){
 
 if(isset($_GET['delete'])){
     $id = $_GET['delete'];
-    $sql = "DELETE FROM books WHERE id = '$id'";
+    $sql = "DELETE FROM products WHERE id = '$id'";
     $result = mysqli_query($con, $sql);
     if($result){
-        echo '<script>alert("Book Deleted Successfully!"); 
-        window.location.href="admin_book_list.php";</script>';  
+        echo '<script>alert("Product Deleted Successfully!"); 
+        window.location.href="admin_product_list.php";</script>';  
     } else {
-        echo '<script>alert("Book not deleted!")</script>';
+        echo '<script>alert("Product not deleted!")</script>';
     }
 }
 
@@ -27,8 +27,6 @@ if(isset($_POST['update'])){
 
     $update_id = $_POST['update_id'];
     $update_title = mysqli_real_escape_string($con, $_POST['update_title']);
-    $update_author = mysqli_real_escape_string($con, $_POST['update_author']);
-    $update_publisher = mysqli_real_escape_string($con, $_POST['update_publisher']);
     $update_price = $_POST['update_price'];
     $update_qty = $_POST['update_qty'];
     $update_category = $_POST['update_category'];
@@ -38,15 +36,15 @@ if(isset($_POST['update'])){
     $update_image_folder = './src/uploads/'.$update_image;
     $update_old_image = $_POST['update_old_image'];
 
-    $update_sql = mysqli_query($con, "UPDATE books SET title = '$update_title', author = '$update_author', publisher = '$update_publisher', price = '$update_price', qty = '$update_qty', category_id = '$update_category', description = '$update_description' WHERE id = '$update_id'") or die('query failed');
+    $update_sql = mysqli_query($con, "UPDATE products SET title = '$update_title', price = '$update_price', qty = '$update_qty', category_id = '$update_category', description = '$update_description' WHERE id = '$update_id'") or die('query failed');
 
     if(!empty($update_image)){
-        mysqli_query($con, "UPDATE books SET image = '$update_image' WHERE id = '$update_id'") or die('query failed');
+        mysqli_query($con, "UPDATE products SET image = '$update_image' WHERE id = '$update_id'") or die('query failed');
         move_uploaded_file($update_image_tmp, $update_image_folder);
         unlink('src/uploads/'.$update_old_image);
     }
 
-    header('location:admin_book_list.php');
+    header('location:admin_product_list.php');
 
 }
 
@@ -54,7 +52,7 @@ include './templates/admin_header.php';
 
 ?>
 
-<link rel="stylesheet" href="./css/books.css">
+<link rel="stylesheet" href="./css/products.css">
 
 
 <div class="main-container book-main">
@@ -64,27 +62,27 @@ include './templates/admin_header.php';
 
     <div class="book-container">
         <?php
-            $select_books = mysqli_query($con, "SELECT * FROM books") or die('query failed');
-            $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN books ON categories.id = books.category_id") or die('query failed');
-            if(mysqli_num_rows($select_books) > 0){
-                while(($fetch_books = mysqli_fetch_assoc($select_books)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
+            $select_products = mysqli_query($con, "SELECT * FROM products") or die('query failed');
+            $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN products ON categories.id = products.category_id") or die('query failed');
+            if(mysqli_num_rows($select_products) > 0){
+                while(($fetch_products = mysqli_fetch_assoc($select_products)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
     
         ?>
                 <div class="book-card">
-                    <img src="src/uploads/<?php echo $fetch_books['image']; ?>" alt="">
+                    <img src="src/uploads/<?php echo $fetch_products['image']; ?>" alt="">
                     <div class="book-info">
-                        <h3><?php echo  $fetch_books['title']; ?></h3>
+                        <h3><?php echo  $fetch_products['title']; ?></h3>
                         <p style="text-align:center;"><?php echo $fetch_category['name']; ?></p>
                         <div class="price-qty">
-                            <span>Price: <?php echo $fetch_books['price']; ?></span>
-                            <span>Qty: <?php echo $fetch_books['qty']; ?></span>
+                            <span>Price: $<?php echo $fetch_products['price']; ?></span>
+                            <span>Qty: <?php echo $fetch_products['qty']; ?></span>
                         </div>
                         <div class="card-btns">
                             <div class="btn-1">
-                                <a href="admin_book_list.php?update=<?php echo $fetch_books['id']; ?>"><button class="btn update-btn">Update</button></a>
+                                <a href="admin_product_list.php?update=<?php echo $fetch_products['id']; ?>"><button class="btn update-btn">Update</button></a>
                             </div>
                             <div class="btn-2">
-                                <a href="admin_book_list.php?delete=<?php echo $fetch_books['id']; ?>"><button name="delete" class="btn delete-btn" onclick="return confirm('Delete this book?')">Delete</button></a>
+                                <a href="admin_product_list.php?delete=<?php echo $fetch_products['id']; ?>"><button name="delete" class="btn delete-btn" onclick="return confirm('Delete this product?')">Delete</button></a>
                                 
                         </div>
                         </div>           
@@ -94,7 +92,7 @@ include './templates/admin_header.php';
             <?php
                  }
                 } else {
-                    echo '<p class="empty">No books found!</p>';
+                    echo '<p class="empty">No products found!</p>';
                 }
             ?>
 
@@ -107,8 +105,8 @@ include './templates/admin_header.php';
     <?php
             if(isset($_GET['update'])){
                 $id = $_GET['update'];
-                $update_query = mysqli_query($con, "SELECT * FROM books WHERE id = '$id'") or die('query failed');
-                $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN books ON categories.id = books.category_id") or die('query failed');
+                $update_query = mysqli_query($con, "SELECT * FROM products WHERE id = '$id'") or die('query failed');
+                $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN products ON categories.id = products.category_id") or die('query failed');
 
                 if(mysqli_num_rows($update_query) > 0){
                     while(($fetch_update = mysqli_fetch_assoc($update_query)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
@@ -122,14 +120,7 @@ include './templates/admin_header.php';
                     <i class="fas fa-book"></i>
                     <input type="text" name="update_title" id="update_title" placeholder="Title" value="<?php echo $fetch_update['title']; ?>" required>
                 </div>
-                <div class="input-field">
-                    <i class="fas fa-user"></i>
-                    <input type="text" name="update_author" id="update_author" placeholder="Author" value="<?php echo $fetch_update['author']; ?>">
-                </div>
-                <div class="input-field">
-                    <i class="fas fa-book"></i>
-                    <input type="text" name="update_publisher" id="update_publisher" placeholder="Publisher" value="<?php echo $fetch_update['publisher']; ?>" >
-                </div>
+                
                 <div class="input-field">
                     <i class="fas fa-dollar-sign"></i>
                     <input type="number" min="0" name="update_price" id="update_price" placeholder="Price" value="<?php echo $fetch_update['price']; ?>">

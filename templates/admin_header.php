@@ -42,16 +42,7 @@ setcookie("admin_email", $_SESSION["admin_email"], time() + (86400*30), "/");
                         <img src="./src/logo.png" alt="logo" id="logo">
                     </a>
                 </div>
-                <div class="cat-button">
-                    <button class="category"> Category</button>
-                    <div class="c-list"><a href="shop.php">
-                        <button class="links" style="border-radius: 10px 10px 0 0;">Adventure</button>
-                        <button class="links">Comic Book</button>
-                        <button class="links">Fantasy</button>
-                        <button class="links">Horror</button>
-                        <button class="links" style="border-radius: 0 0 10px 10px;">Historical Fiction</button></a>
-                    </div>
-                </div>
+                
                 <div class="bottom-container">
                 <nav>
                     <div class="nav-links">
@@ -65,15 +56,7 @@ setcookie("admin_email", $_SESSION["admin_email"], time() + (86400*30), "/");
                     </div>
                 </nav>
             </div>
-                <div class="search-bar">
-                    <div class="search">
-                        
-                            <a href="search.php"><button type="submit" class="search-btn" name="search-btn">
-                            <i class="fa fa-search"></i>
-                        </button></a>
-                        
-                    </div>
-                </div>
+                
                 <div class="cart-icon">
                         <?php
                         if(isset($_SESSION['user_id'])){

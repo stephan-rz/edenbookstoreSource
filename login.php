@@ -42,7 +42,7 @@ if(isset($_POST['submit'])){
 mysqli_close($con);
 ?>
     
-    <div class="main-container">
+    <div class="main-container" style="padding-bottom:80px;">
         <div class="container login-card">
             <div class="form-container">
                 <h2>Sign In</h2>
@@ -77,6 +77,5 @@ mysqli_close($con);
     
 
 <?php
-include './templates/newsletter.php';
 include './templates/footer.php';
 ?>

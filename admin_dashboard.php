@@ -67,7 +67,7 @@ include './templates/admin_header.php';
 
       <div class="box">
          <?php 
-            $select_products = mysqli_query($con, "SELECT * FROM `books`") or die('query failed');
+            $select_products = mysqli_query($con, "SELECT * FROM `products`") or die('query failed');
             $number_of_products = mysqli_num_rows($select_products);
          ?>
          <h3><?php echo $number_of_products; ?></h3>

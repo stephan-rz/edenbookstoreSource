@@ -42,7 +42,7 @@ if(isset($_SESSION['admin_id'])){
                 <p> email : <span><?php echo $fetch_orders['email']; ?></span> </p>
                 <p> address : <span><?php echo $fetch_orders['address']; ?></span> </p>
                 <p> payment method : <span><?php echo $fetch_orders['payment_method']; ?></span> </p>
-                <p> your orders : <span><?php echo $fetch_orders['total_books']; ?></span> </p>
+                <p> your orders : <span><?php echo $fetch_orders['total_products']; ?></span> </p>
                 <p> total price : <span>$<?php echo $fetch_orders['total_price']; ?>/-</span> </p>
                 <p> payment status : <span style="color:<?php if($fetch_orders['order_status'] == 'pending'){ echo 'red'; }else{ echo 'green'; } ?>;"><?php echo $fetch_orders['order_status']; ?></span> </p>     
 
@@ -65,7 +65,6 @@ if(isset($_SESSION['admin_id'])){
 
 <?php
 
-    include './templates/newsletter.php';
     include './templates/footer.php';
 
 ?>

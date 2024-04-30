@@ -45,7 +45,7 @@ if(isset($_GET['clear'])){
             </ul>
         </div>
     </div>
-<div class="main-container" style="align-items: flex-start;">
+<div class="main-container" style="align-items: flex-start; padding-bottom:80px;">
         
         <div class="cart-container">
             <div class="basket">
@@ -122,7 +122,7 @@ if(isset($_GET['clear'])){
                         
                         <div class="summary-total">
                         <div class="total-title">Total</div>
-                        <div class="total-value final-value" id="basket-total"><?php if(isset($total)){
+                        <div class="total-value final-value" id="basket-total">$<?php if(isset($total)){
                             echo $total;
                         } else echo '0';  ?></div>
                         </div>
@@ -141,8 +141,6 @@ if(isset($_GET['clear'])){
 </div>
 
 <?php
-
-    include './templates/newsletter.php';
     include './templates/footer.php';
 
 ?>
