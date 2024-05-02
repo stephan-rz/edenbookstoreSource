@@ -1,30 +1,30 @@
-.book-main {
+.product-main {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
     padding-bottom: 80px;
 }
 
-.book-main h1 {
+.product-main h1 {
     width: 100%;
     text-align: center;
 }
 
-.book-container {
+.product-container {
     display: grid;
     grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr) minmax(0, 1fr);
     gap: 2rem;
     align-items: flex-start;
 }
 
-.book-card {
+.product-card {
     padding: 30px;
     border: 1px solid var(--color-grey03);
     border-radius: 20px;
     transition: all .2s ease-in-out;
 }
 
-.book-card img {
+.product-card img {
     width: 100%;
     height: auto;
     border-radius: 20px;
@@ -36,7 +36,7 @@
     justify-content: space-between;
 }
 
-.book-info h3 {
+.product-info h3 {
     text-align: center;
 }
 
@@ -64,7 +64,7 @@
     justify-content: center;
 }
 
-.book-card:hover {
+.product-card:hover {
     transform: scale(1.02);
     box-shadow: 0px 0px 24px -3px rgba(0, 0, 0, 0.38);
 }

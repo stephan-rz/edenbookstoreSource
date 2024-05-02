@@ -55,12 +55,12 @@ include './templates/admin_header.php';
 <link rel="stylesheet" href="./css/products.css">
 
 
-<div class="main-container book-main">
+<div class="main-container product-main">
 
 <?php include './templates/admin_navigation.php' 
 ?>
 
-    <div class="book-container">
+    <div class="product-container">
         <?php
             $select_products = mysqli_query($con, "SELECT * FROM products") or die('query failed');
             $select_category= mysqli_query($con, "SELECT name FROM categories INNER JOIN products ON categories.id = products.category_id") or die('query failed');
@@ -68,9 +68,9 @@ include './templates/admin_header.php';
                 while(($fetch_products = mysqli_fetch_assoc($select_products)) AND ($fetch_category = mysqli_fetch_assoc($select_category))){
     
         ?>
-                <div class="book-card">
+                <div class="product-card">
                     <img src="src/uploads/<?php echo $fetch_products['image']; ?>" alt="">
-                    <div class="book-info">
+                    <div class="product-info">
                         <h3><?php echo  $fetch_products['title']; ?></h3>
                         <p style="text-align:center;"><?php echo $fetch_category['name']; ?></p>
                         <div class="price-qty">

@@ -29,7 +29,7 @@ if(isset($_GET['delete'])){
 <link rel="stylesheet" href="./css/orders.css">
 
    
-<div class="main-container book-main">
+<div class="main-container product-main">
 
     <?php include './templates/admin_navigation.php' 
 

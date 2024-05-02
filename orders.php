@@ -19,7 +19,7 @@ if(isset($_SESSION['admin_id'])){
 <link rel="stylesheet" href="./css/orders.css">
 
    
-<div class="main-container book-main">
+<div class="main-container product-main">
 
     <?php include './templates/user_navigation.php' 
 

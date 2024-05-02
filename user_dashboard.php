@@ -50,7 +50,7 @@ if(isset($_POST['update-btn'])){
 
 <link rel="stylesheet" href="./user_dashboard.css">
 
-<div class="main-container book-main">
+<div class="main-container product-main">
 
 <?php include './templates/user_navigation.php' 
 ?>

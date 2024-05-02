@@ -1,4 +1,4 @@
-.book-main {
+.product-main {
     display: flex;
     flex-wrap: wrap;
     align-items: flex-start;
@@ -9,7 +9,7 @@
     width: 100%;
 }
 
-.book-main h1 {
+.product-main h1 {
     width: 100%;
     text-align: left;
 }

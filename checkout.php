@@ -107,7 +107,7 @@ if($cart_total == 0){
 
 
         <div class="checkout">
-            <div class="form-container">
+            
             <?php
                 $select_cart = mysqli_query($con, "SELECT * FROM cart WHERE user_id = '$user_id'") or die('query failed');
                 $select_user= mysqli_query($con, "SELECT * FROM users INNER JOIN cart ON users.id = cart.user_id") or die('query failed');
@@ -117,8 +117,11 @@ if($cart_total == 0){
                     while(($fetch_cart = mysqli_fetch_assoc($select_cart)) AND ($fetch_user = mysqli_fetch_assoc($select_user))) {
                 ?>
 
-                <form action="" method="POST">
-                    <h3>Place your order</h3>
+                <form action="" method="POST" style="display:flex; gap:30px; flex-direction:row;   align-items: flex-start;">
+                    <div class="form-container">
+
+                    
+                    <h3>1. Shiping Details</h3>
                     <div class="half-container">
                         <div class="input-field half-column">
                             <i class="fas fa-user"></i>
@@ -178,7 +181,12 @@ if($cart_total == 0){
                             </select>
                         </div>
 
-                        <div class="input-field">
+                        </div>
+                    </div>
+                    <div class="form-container">
+
+                    <h3 style="margin-bottom:20px;">2. Payment Method</h3>
+                    <div class="input-field">
                         <i class="fa-solid fa-credit-card"></i>
                             <select id="country" name="payment_method" required>
                                 <option value=" " disable selected>- Select Payment Method -</option>
@@ -187,11 +195,15 @@ if($cart_total == 0){
                             </select>
                         </div>
 
+                   
+
+                        
+                    <input type="submit" value="Place Order" name="order-btn" class="btn" id="order-btn" style="width:100%; justify-content: center;">
+
 
                     </div>
 
-                    <input type="submit" value="Place Order" name="order-btn" class="btn" id="order-btn">
-
+                    
 
                 </form>
                 <?php
@@ -201,7 +213,7 @@ if($cart_total == 0){
                     }
                 ?>        
                 
-            </div>
+            
         </div>
     </div>
 

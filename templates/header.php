@@ -35,10 +35,10 @@
                 <nav>
                     <div class="nav-links">
                         <ul id="nav-mobile" class="right hide-on-med-and-down">
-                            <li><a href="aboutus.php ">About Us</a></li>
-                            <li><a href="shop.php ">Shop</a></li>
-                            <li><a href="faq.php ">FAQ</a></li>
-                            <li><a href="contactus.php ">Contact</a></li>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Shop</a></li>
+                            <li><a href="#">FAQ</a></li>
+                            <li><a href="#">Contact</a></li>
 
                         </ul>
                     </div>

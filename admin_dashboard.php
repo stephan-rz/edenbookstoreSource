@@ -14,11 +14,10 @@ include './templates/admin_header.php';
 
 ?>
 
-<link rel="stylesheet" href="./css/books.css">
 
 
 
-<div class="main-container book-main">
+<div class="main-container product-main">
 
 <?php include './templates/admin_navigation.php' 
 ?>
@@ -71,7 +70,7 @@ include './templates/admin_header.php';
             $number_of_products = mysqli_num_rows($select_products);
          ?>
          <h3><?php echo $number_of_products; ?></h3>
-         <p>Books added</p>
+         <p>Products added</p>
       </div>
 
       <div class="box">
